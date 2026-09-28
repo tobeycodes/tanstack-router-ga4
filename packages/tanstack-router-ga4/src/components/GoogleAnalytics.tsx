@@ -50,11 +50,11 @@ const GoogleAnalyticsInner = ({ config, consentDefaults, measurementId }: Google
 
     event('page_view', {
       page_path: location.pathname,
-      page_location: window.location.href,
+      page_location: new URL(location.href, window.location.origin).href,
       page_title: document.title,
       page_referrer: document.referrer || undefined,
     });
-  }, [event, location.pathname, measurementId]);
+  }, [event, location.href, location.pathname, measurementId]);
 
   return null;
 };
